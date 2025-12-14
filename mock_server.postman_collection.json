@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "mock-syria-tax-api",
+		"name": "Syria Tax API - Mock Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"testpos3\",\r\n  \"passWord\": \"A@123456789\",\r\n  \"taxNumber\": \"000000000000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Taxapi/api/account/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Taxapi",
+						"api",
+						"account",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"testpos3\",\r\n  \"passWord\": \"A@123456789\",\r\n  \"taxNumber\": \"000000000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/Taxapi/api/account/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"Taxapi",
+								"api",
+								"account",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"token\": \"mock_token_12345678-1234-1234-1234-123456789abc\",\n        \"facilityName\": \"Mock Facility for 000000000000\"\n    },\n    \"succeed\": true,\n    \"message\": \"تم تسجيل الدخول بنجاح\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Check Bill - GUID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"12345678-1234-1234-1234-123456789abc\",\r\n  \"codeType\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Taxapi/api/Bill/CheckBill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Taxapi",
+						"api",
+						"Bill",
+						"CheckBill"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Bill Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\": \"12345678-1234-1234-1234-123456789abc\",\r\n  \"codeType\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/Taxapi/api/Bill/CheckBill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"Taxapi",
+								"api",
+								"Bill",
+								"CheckBill"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"billValue\": 1000,\n        \"billDate\": \"2024-01-15 02:30 PM\",\n        \"facilityName\": \"Mock Facility\"\n    },\n    \"succeed\": true,\n    \"message\": \"TaskCompletedSuccfessfully\"\n}"
+				},
+				{
+					"name": "Bill Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\": \"nonexistent-guid\",\r\n  \"codeType\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/Taxapi/api/Bill/CheckBill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"Taxapi",
+								"api",
+								"Bill",
+								"CheckBill"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"succeed\": false,\n    \"message\": \"BillNotFound\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Check Bill - Random Number",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"123456789\",\r\n  \"codeType\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Taxapi/api/Bill/CheckBill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Taxapi",
+						"api",
+						"Bill",
+						"CheckBill"
+					]
+				}
+			}
+		},
+		{
+			"name": "Add Full Bill",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer mock_token_12345678-1234-1234-1234-123456789abc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"billValue\": 1000,\r\n  \"billNumber\": \"INV/2024/001\",\r\n  \"code\": \"12345678-1234-1234-1234-123456789abc\",\r\n  \"currency\": \"sp\",\r\n  \"exProgram\": \"Odoo\",\r\n  \"date\": \"2024-01-15T14:30:00.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/Taxapi/api/Bill/AddFullBill",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"Taxapi",
+						"api",
+						"Bill",
+						"AddFullBill"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Bill Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer mock_token_12345678-1234-1234-1234-123456789abc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"billValue\": 1000,\r\n  \"billNumber\": \"INV/2024/001\",\r\n  \"code\": \"12345678-1234-1234-1234-123456789abc\",\r\n  \"currency\": \"sp\",\r\n  \"exProgram\": \"Odoo\",\r\n  \"date\": \"2024-01-15T14:30:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/Taxapi/api/Bill/AddFullBill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"Taxapi",
+								"api",
+								"Bill",
+								"AddFullBill"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"code\": \"12345678-1234-1234-1234-123456789abc\",\n        \"billDate\": \"2024-01-15 02:30 PM\",\n        \"randomNumber\": \"987654321\"\n    },\n    \"succeed\": true,\n    \"message\": \"تم إضافة الفاتورة بنجاح\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Server Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/mock/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"mock",
+						"status"
+					]
+				}
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "mock_token",
+			"value": "mock_token_12345678-1234-1234-1234-123456789abc",
+			"type": "string"
+		}
+	]
+}
